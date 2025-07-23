@@ -5,11 +5,10 @@
   <title>My SAT Account – College Board</title>
   <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}">
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
   <style>
     body {
       margin: 0;
-      font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
       background-color: #f5f5f5;
     }
 
@@ -19,81 +18,57 @@
     }
 
     .sidebar {
-      width: 250px;
-      background: linear-gradient(to bottom, #003057, #002244);
+      width: 220px;
+      background: linear-gradient(180deg, #003057, #001F3F);
       color: white;
       display: flex;
       flex-direction: column;
-      padding: 24px 16px;
+      padding: 20px 12px;
       transition: width 0.3s ease;
       position: relative;
     }
 
     .sidebar.collapsed {
-      width: 70px;
+      width: 60px;
     }
 
-    .logo-container {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 20px;
-    }
-
-    .logo {
+    .sidebar .logo {
       height: 48px;
-      transition: opacity 0.3s ease;
-    }
-
-    .sidebar.collapsed .logo {
-      opacity: 0;
+      margin-bottom: 20px;
+      object-fit: contain;
     }
 
     .toggle-btn {
       position: absolute;
-      top: 24px;
-      right: -36px;
-      background-color: #003057;
-      border: none;
-      color: white;
-      font-size: 22px;
+      top: 18px;
+      right: -40px;
       width: 36px;
       height: 36px;
-      border-radius: 8px;
+      background-color: #003057;
+      color: white;
+      border: none;
+      font-size: 20px;
+      border-radius: 4px;
       cursor: pointer;
-      transition: background-color 0.3s ease;
+      z-index: 10;
     }
 
-    .toggle-btn:hover {
-      background-color: #005fa3;
-    }
-
-    .nav-btn {
+    .sidebar a {
+      color: white;
+      text-decoration: none;
+      margin: 12px 0;
+      font-size: 15px;
+      padding-left: 8px;
       display: flex;
       align-items: center;
-      gap: 12px;
-      padding: 12px;
-      font-size: 15px;
-      font-family: 'Inter', sans-serif;
-      color: white;
-      background: none;
-      border: none;
-      cursor: pointer;
-      text-align: left;
-      transition: background 0.2s ease;
+      gap: 10px;
+      transition: 0.3s ease;
     }
 
-    .nav-btn:hover {
-      background-color: #005fa3;
-    }
-
-    .sidebar.collapsed .nav-text {
-      display: none;
-    }
-
-    .sidebar i {
-      font-size: 18px;
-      min-width: 20px;
+    .sidebar a:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+      border-radius: 6px;
+      padding: 8px;
     }
 
     .main-content {
@@ -113,7 +88,7 @@
 
     .certificate-container h1 {
       font-size: 28px;
-      font-weight: 600;
+      font-weight: 500;
       color: #0f2940;
       margin-bottom: 24px;
     }
@@ -173,34 +148,31 @@
     }
 
     @media (max-width: 768px) {
+      .download-buttons {
+        flex-direction: column;
+        align-items: center;
+      }
       .layout {
         flex-direction: column;
       }
       .sidebar {
+        width: 100%;
         flex-direction: row;
         justify-content: space-between;
-        width: 100%;
-      }
-      .toggle-btn {
-        top: 12px;
-        right: 12px;
       }
     }
   </style>
 </head>
 <body>
+
   <div class="layout">
     <div class="sidebar" id="sidebar">
-      <div class="logo-container">
-        <img src="{{ url_for('static', filename='collegeboard-logo-white.svg') }}" alt="College Board Logo" class="logo">
-      </div>
-      <button class="toggle-btn" onclick="toggleSidebar()">
-        <i class="fas fa-bars"></i>
-      </button>
-      <button class="nav-btn"><i class="fas fa-tachometer-alt"></i><span class="nav-text">Dashboard</span></button>
-      <button class="nav-btn"><i class="fas fa-file-alt"></i><span class="nav-text">Scores</span></button>
-      <button class="nav-btn"><i class="fas fa-user"></i><span class="nav-text">My Profile</span></button>
-      <button class="nav-btn"><i class="fas fa-cog"></i><span class="nav-text">Settings</span></button>
+      <img src="{{ url_for('static', filename='collegeboard-logo-white.svg') }}" alt="College Board Logo" class="logo">
+      <a href="#" class="toggle-btn" onclick="toggleSidebar()">☰</a>
+      <a href="#"><span>📊</span> Dashboard</a>
+      <a href="#"><span>📄</span> Scores</a>
+      <a href="#"><span>👤</span> My Profile</a>
+      <a href="#"><span>⚙️</span> Settings</a>
     </div>
 
     <div class="main-content">
@@ -233,5 +205,6 @@
       document.getElementById('sidebar').classList.toggle('collapsed');
     }
   </script>
+
 </body>
 </html>
