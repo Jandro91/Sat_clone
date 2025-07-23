@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Sign In – College Board</title>
+  <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='favicon.ico') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="cb-container">
+    <img class="cb-logo" src="{{ url_for('static', filename='collegeboard-logo.svg') }}" alt="College Board logo">
+    <h1 class="cb-title">Sign In</h1>
+    <form method="post" novalidate>
+      <label for="login">Username</label>
+      <input type="text" id="login" name="login" required autofocus>
+      <label for="password">Password</label>
+      <input type="password" id="password" name="password" required>
+      <button type="submit">Sign In</button>
+      {% if error %}
+        <div class="cb-error">{{ error }}</div>
+      {% endif %}
+    </form>
+    <div class="cb-links">
+      <a href="#">Forgot username?</a> |
+      <a href="#">Forgot password?</a>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Your SAT Certificate</title>
+  <style>
+    body { margin:0; background:#f5f5f5; font-family:"Segoe UI",Arial,sans-serif; text-align:center; }
+    h1 { margin-top:24px; }
+    iframe { width:80%; height:80vh; border: none; margin:24px auto; display:block; }
+  </style>
+</head>
+<body>
+  <h1>Your SAT Certificate</h1>
+  <iframe src="{{ url_for('download_file', filename=filename) }}"></iframe>
+</body>
+</html>
