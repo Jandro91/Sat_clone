@@ -1,8 +1,9 @@
 from flask import Flask, render_template, request, redirect, url_for, session, send_from_directory
 import csv
+import os
 
 app = Flask(__name__)
-app.secret_key = 'sat-clone-secret-123'  # или любой другой безопасный ключ
+app.secret_key = 'sat-clone-secret-123'
 
 def load_users():
     users = {}
@@ -16,7 +17,7 @@ USERS = load_users()
 @app.route('/')
 def index():
     return redirect(url_for('login'))
-    
+
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     error = None
@@ -32,7 +33,6 @@ def login():
 
 @app.route('/certificate/<filename>')
 def certificate(filename):
-    from flask import session
     username = session.get('username', 'Unknown')
     return render_template('certificate.html', filename=filename, username=username)
 
@@ -40,6 +40,7 @@ def certificate(filename):
 def download_file(filename):
     return send_from_directory('certificates', filename)
 
-if __name__ == '__main__':
-    print("Starting College Board clone...")
-    app.run(host='0.0.0.0', port=80, debug=True)
+# ✅ Только один правильный запуск приложения
+if __name__ == "__main__":
+    port = int(os.environ.get("PORT", 5000))  # Для Render
+    app.run(host="0.0.0.0", port=port)
