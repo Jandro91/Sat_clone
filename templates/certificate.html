@@ -6,205 +6,201 @@
   <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}">
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
   <style>
-    body {
-      margin: 0;
-      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-      background-color: #f5f5f5;
-    }
+  body {
+    margin: 0;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    background-color: #f5f5f5;
+  }
 
-    .layout {
-      display: flex;
-      min-height: 100vh;
-    }
+  .layout {
+    display: flex;
+    min-height: 100vh;
+  }
 
-    .sidebar {
-      width: 220px;
-      background: linear-gradient(180deg, #003057, #001F3F);
-      color: white;
-      display: flex;
-      flex-direction: column;
-      padding: 20px 12px;
-      transition: width 0.3s ease;
-      position: relative;
-    }
+  .sidebar {
+    width: 220px;
+    background: linear-gradient(180deg, #003057 0%, #002244 100%);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 24px 16px;
+    transition: width 0.3s ease;
+  }
 
-    .sidebar.collapsed {
-      width: 60px;
-    }
+  .sidebar .logo {
+    height: 48px;
+    margin: 0 auto 30px auto;
+    display: block;
+  }
 
-    .sidebar .logo {
-      height: 48px;
-      margin-bottom: 20px;
-      object-fit: contain;
-    }
+  .sidebar nav {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
 
-    .toggle-btn {
-      position: absolute;
-      top: 18px;
-      right: -40px;
-      width: 36px;
-      height: 36px;
-      background-color: #003057;
-      color: white;
-      border: none;
-      font-size: 20px;
-      border-radius: 4px;
-      cursor: pointer;
-      z-index: 10;
-    }
+  .sidebar a {
+    color: white;
+    text-decoration: none;
+    font-size: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: 0.3s;
+  }
 
-    .sidebar a {
-      color: white;
-      text-decoration: none;
-      margin: 12px 0;
-      font-size: 15px;
-      padding-left: 8px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      transition: 0.3s ease;
-    }
+  .sidebar a:hover {
+    text-decoration: underline;
+  }
 
-    .sidebar a:hover {
-      background-color: rgba(255, 255, 255, 0.1);
-      border-radius: 6px;
-      padding: 8px;
-    }
+  .toggle-btn {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 22px;
+    cursor: pointer;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    align-self: center;
+  }
 
-    .main-content {
-      flex: 1;
-      padding: 20px 40px;
-    }
+  .main-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
 
-    .certificate-container {
-      max-width: 800px;
-      margin: 0 auto;
-      padding: 24px 20px;
-      background: white;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-      border-radius: 8px;
-      text-align: center;
-    }
+  .topbar {
+    height: 60px;
+    background-color: white;
+    border-bottom: 1px solid #ccc;
+    display: flex;
+    align-items: center;
+    padding: 0 30px;
+    font-size: 20px;
+    font-weight: bold;
+    color: #003057;
+  }
 
-    .certificate-container h1 {
-      font-size: 28px;
-      font-weight: 500;
-      color: #0f2940;
-      margin-bottom: 24px;
-    }
+  .certificate-container {
+    flex: 1;
+    padding: 30px 40px;
+    max-width: 1000px;
+    margin: 0 auto;
+    background: white;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    border-radius: 8px;
+    text-align: center;
+    margin-top: 30px;
+  }
 
-    .download-buttons {
-      display: flex;
-      justify-content: center;
-      gap: 16px;
-      margin-bottom: 20px;
-      flex-wrap: wrap;
-    }
+  .download-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+  }
 
-    .download-btn {
-      padding: 10px 20px;
-      font-size: 14px;
-      background-color: white;
-      border: 2px solid #003057;
-      color: #003057;
-      border-radius: 6px;
-      text-decoration: none;
-      transition: 0.3s ease;
-    }
+  .download-btn {
+    padding: 10px 20px;
+    font-size: 14px;
+    background-color: white;
+    border: 2px solid #003057;
+    color: #003057;
+    border-radius: 6px;
+    text-decoration: none;
+    transition: 0.3s ease;
+  }
 
-    .download-btn:hover {
-      background-color: #003057;
-      color: white;
-    }
+  .download-btn:hover {
+    background-color: #003057;
+    color: white;
+  }
 
-    iframe {
-      width: 100%;
-      height: 600px;
-      border: none;
-      border-radius: 4px;
-    }
+  iframe {
+    width: 100%;
+    height: 600px;
+    border: none;
+    border-radius: 4px;
+  }
 
-    .footer-links {
-      margin-top: 40px;
-      text-align: center;
-      font-size: 13px;
-      color: #666;
-    }
+  .footer-links {
+    margin-top: 40px;
+    text-align: center;
+    font-size: 13px;
+    color: #666;
+  }
 
-    .footer-links a {
-      color: #0072ce;
-      margin: 0 10px;
-      text-decoration: none;
-    }
+  .footer-links a {
+    color: #0072ce;
+    margin: 0 10px;
+    text-decoration: none;
+  }
 
-    .footer-links a:hover {
-      text-decoration: underline;
-    }
+  .footer-links a:hover {
+    text-decoration: underline;
+  }
 
-    .copyright {
-      margin-top: 10px;
-      font-size: 12px;
-      color: #999;
-    }
-
-    @media (max-width: 768px) {
-      .download-buttons {
-        flex-direction: column;
-        align-items: center;
-      }
-      .layout {
-        flex-direction: column;
-      }
-      .sidebar {
-        width: 100%;
-        flex-direction: row;
-        justify-content: space-between;
-      }
-    }
-  </style>
+  .copyright {
+    margin-top: 10px;
+    font-size: 12px;
+    color: #999;
+  }
+</style>
 </head>
 <body>
 
   <div class="layout">
-    <div class="sidebar" id="sidebar">
+
+  <div class="sidebar">
+    <div>
       <img src="{{ url_for('static', filename='collegeboard-logo-white.svg') }}" alt="College Board Logo" class="logo">
-      <a href="#" class="toggle-btn" onclick="toggleSidebar()">☰</a>
-      <a href="#"><span>📊</span> Dashboard</a>
-      <a href="#"><span>📄</span> Scores</a>
-      <a href="#"><span>👤</span> My Profile</a>
-      <a href="#"><span>⚙️</span> Settings</a>
+
+      <nav>
+        <a href="#"><span>📊</span> Dashboard</a>
+        <a href="#"><span>📄</span> Scores</a>
+        <a href="#"><span>👤</span> My Profile</a>
+        <a href="#"><span>⚙️</span> Settings</a>
+      </nav>
     </div>
 
-    <div class="main-content">
-      <div class="certificate-container">
-        <h1>Welcome to your College Board account</h1>
+    <button class="toggle-btn" onclick="toggleSidebar()">☰</button>
+  </div>
 
-        <div class="download-buttons">
-          <a href="{{ url_for('download_file', filename=filename) }}" class="download-btn" target="_blank">Print / Download PDF Format</a>
-          <a href="#" class="download-btn">Send scores to additional institutions</a>
-        </div>
+  <div class="main-content">
+    <div class="topbar">My SAT Score</div>
 
-        <iframe src="{{ url_for('download_file', filename=filename) }}"></iframe>
+    <div class="certificate-container">
+      <h1>Welcome to your College Board account</h1>
+
+      <div class="download-buttons">
+        <a href="{{ url_for('download_file', filename=filename) }}" class="download-btn" target="_blank">Print / Download PDF Format</a>
+        <a href="#" class="download-btn">Send scores to additional institutions</a>
       </div>
 
-      <div class="footer-links">
-        <a href="#">Contact Us</a> |
-        <a href="#">Legal</a> |
-        <a href="#">Privacy & Security</a> |
-        <a href="#">Collegeboard Trademarks</a> |
-        <a href="#">Get Adobe Reader (for PDFs)</a>
-        <div class="copyright">
-          Copyright © 2025 by Collegeboard
-        </div>
+      <iframe src="{{ url_for('download_file', filename=filename) }}"></iframe>
+    </div>
+
+    <div class="footer-links">
+      <a href="#">Contact Us</a> |
+      <a href="#">Legal</a> |
+      <a href="#">Privacy & Security</a> |
+      <a href="#">Collegeboard Trademarks</a> |
+      <a href="#">Get Adobe Reader (for PDFs)</a>
+      <div class="copyright">
+        Copyright © 2025 by Collegeboard
       </div>
     </div>
   </div>
 
-  <script>
-    function toggleSidebar() {
-      document.getElementById('sidebar').classList.toggle('collapsed');
-    }
-  </script>
+</div>
 
-</body>
-</html>
+<script>
+  function toggleSidebar() {
+    const sidebar = document.querySelector('.sidebar');
+    sidebar.classList.toggle('collapsed');
+  }
+</script>
