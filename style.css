@@ -74,3 +74,20 @@ button:hover {
   color: #0071bc;
   text-decoration: none;
 }
+
+.certificate-container {
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 24px 20px 20px;
+  background: white;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  border-radius: 8px;
+  text-align: center;
+}
+
+.certificate-container h1 {
+  font-size: 28px;
+  font-weight: 500;
+  color: #0f2940;
+  margin-bottom: 24px;
+}
